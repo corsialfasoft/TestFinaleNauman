@@ -1,0 +1,43 @@
+﻿<div class="container">
+    <h2>Dettaglio Menu</h2>
+    @if (ViewBag.Menu !=null) {
+    <div class="row">
+        <div class="col-md-3 h4">
+            Nome Menu
+        </div>
+        <div class="col-md-6">
+            @ViewBag.Menu.Nome
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 h4">
+            Data
+        </div>
+        <div class="col-md-6">
+            @ViewBag.Menu.Data
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 h4">
+            Fascia Oraria
+        </div>
+        <div class="col-md-6">
+            @ViewBag.Menu.FasciaOrario
+        </div>
+    </div>
+        for (int j = 0; j < ViewBag.Menu.Piatti.Count; j++) {
+            <div class="row">
+                <div class="col-md-3 h4">
+                    @ViewBag.Menu.Piatti[j].Portata
+                </div>
+                <div class="col-md-6">
+                    @ViewBag.Menu.Piatti[j].Nome
+                </div>
+            </div>
+        }
+    } else {
+        <div class="text-danger">
+            Menu non trovato
+        </div>
+    }
+</div>

@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Aggingi Menu";
+}
+<div class="text-danger">
+    @ViewBag.Message
+</div>
+<h2>@ViewBag.Title</h2>
+<div class="container">
+    @using (Html.BeginForm()) {
+        <div class="row">
+            <div class="col-md-3">
+                Nome
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="nome" placeholder="Inserire il nome del menu..." required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                Data
+            </div>
+            <div class="col-md-6">
+                <input name="data" type="date" required/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                Fascia Oraria
+            </div>
+            <div class="col-md-6">
+                <input type="radio" name="orario" value="pranzo" checked />Pranzo
+                <input type="radio" name="orario" value="Cena" />Cena
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" name="primo" placeholder="Inserire il primo piatto..." required />
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="secondo" placeholder="Inserire il secondo piatto..." required />
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="contorno" placeholder="Inserire il contorno..." required />
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="dolce" placeholder="Inserire il dolce..." required/>
+            </div>
+        </div>
+        <div class="row">
+            <input type="submit" value="Salva" />
+        </div>
+    }
+</div>
