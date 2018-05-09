@@ -6,7 +6,7 @@
 </div>
 <h2>@ViewBag.Title</h2>
 <div class="container">
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm("AddMenu","Home",FormMethod.Post)) {
         <div class="row">
             <div class="col-md-3">
                 Nome

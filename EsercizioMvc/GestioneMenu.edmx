@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GestioneMenuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FasciaOrario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descrizione" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fasciaOrario" Type="int" />
+          <Property Name="descrizione" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MenuPiatti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menu" Type="int" />
+          <Property Name="piatto" Type="int" />
+        </EntityType>
+        <EntityType Name="Piatti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="portata" Type="int" />
+          <Property Name="descrizione" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Portate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descrizione" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Menu__fasciaOrar__3D5E1FD2">
+          <End Role="FasciaOrario" Type="Self.FasciaOrario" Multiplicity="0..1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FasciaOrario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="fasciaOrario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuPiatt__piatt__4222D4EF">
+          <End Role="Piatti" Type="Self.Piatti" Multiplicity="0..1" />
+          <End Role="MenuPiatti" Type="Self.MenuPiatti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Piatti">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MenuPiatti">
+              <PropertyRef Name="piatto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuPiatti__menu__412EB0B6">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="MenuPiatti" Type="Self.MenuPiatti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MenuPiatti">
+              <PropertyRef Name="menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Piatti__portata__38996AB5">
+          <End Role="Portate" Type="Self.Portate" Multiplicity="0..1" />
+          <End Role="Piatti" Type="Self.Piatti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Piatti">
+              <PropertyRef Name="portata" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestioneMenuModelStoreContainer">
+          <EntitySet Name="FasciaOrario" EntityType="Self.FasciaOrario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuPiatti" EntityType="Self.MenuPiatti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Piatti" EntityType="Self.Piatti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Portate" EntityType="Self.Portate" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Menu__fasciaOrar__3D5E1FD2" Association="Self.FK__Menu__fasciaOrar__3D5E1FD2">
+            <End Role="FasciaOrario" EntitySet="FasciaOrario" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuPiatt__piatt__4222D4EF" Association="Self.FK__MenuPiatt__piatt__4222D4EF">
+            <End Role="Piatti" EntitySet="Piatti" />
+            <End Role="MenuPiatti" EntitySet="MenuPiatti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuPiatti__menu__412EB0B6" Association="Self.FK__MenuPiatti__menu__412EB0B6">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuPiatti" EntitySet="MenuPiatti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Piatti__portata__38996AB5" Association="Self.FK__Piatti__portata__38996AB5">
+            <End Role="Portate" EntitySet="Portate" />
+            <End Role="Piatti" EntitySet="Piatti" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GestioneMenuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FasciaOrario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descrizione" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Menu" Relationship="Self.FK__Menu__fasciaOrar__3D5E1FD2" FromRole="FasciaOrario" ToRole="Menu" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fasciaOrario" Type="Int32" />
+          <Property Name="descrizione" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FasciaOrario1" Relationship="Self.FK__Menu__fasciaOrar__3D5E1FD2" FromRole="Menu" ToRole="FasciaOrario" />
+          <NavigationProperty Name="MenuPiatti" Relationship="Self.FK__MenuPiatti__menu__412EB0B6" FromRole="Menu" ToRole="MenuPiatti" />
+        </EntityType>
+        <EntityType Name="MenuPiatti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menu" Type="Int32" />
+          <Property Name="piatto" Type="Int32" />
+          <NavigationProperty Name="Menu1" Relationship="Self.FK__MenuPiatti__menu__412EB0B6" FromRole="MenuPiatti" ToRole="Menu" />
+          <NavigationProperty Name="Piatti" Relationship="Self.FK__MenuPiatt__piatt__4222D4EF" FromRole="MenuPiatti" ToRole="Piatti" />
+        </EntityType>
+        <EntityType Name="Piatti">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="portata" Type="Int32" />
+          <Property Name="descrizione" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MenuPiatti" Relationship="Self.FK__MenuPiatt__piatt__4222D4EF" FromRole="Piatti" ToRole="MenuPiatti" />
+          <NavigationProperty Name="Portate" Relationship="Self.FK__Piatti__portata__38996AB5" FromRole="Piatti" ToRole="Portate" />
+        </EntityType>
+        <EntityType Name="Portate">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descrizione" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Piatti" Relationship="Self.FK__Piatti__portata__38996AB5" FromRole="Portate" ToRole="Piatti" />
+        </EntityType>
+        <Association Name="FK__Menu__fasciaOrar__3D5E1FD2">
+          <End Role="FasciaOrario" Type="Self.FasciaOrario" Multiplicity="0..1" />
+          <End Role="Menu" Type="Self.Menu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FasciaOrario">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menu">
+              <PropertyRef Name="fasciaOrario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuPiatti__menu__412EB0B6">
+          <End Role="Menu" Type="Self.Menu" Multiplicity="0..1" />
+          <End Role="MenuPiatti" Type="Self.MenuPiatti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Menu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MenuPiatti">
+              <PropertyRef Name="menu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__MenuPiatt__piatt__4222D4EF">
+          <End Role="Piatti" Type="Self.Piatti" Multiplicity="0..1" />
+          <End Role="MenuPiatti" Type="Self.MenuPiatti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Piatti">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MenuPiatti">
+              <PropertyRef Name="piatto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Piatti__portata__38996AB5">
+          <End Role="Portate" Type="Self.Portate" Multiplicity="0..1" />
+          <End Role="Piatti" Type="Self.Piatti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Portate">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Piatti">
+              <PropertyRef Name="portata" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GestioneMenuEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FasciaOrario" EntityType="Self.FasciaOrario" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" />
+          <EntitySet Name="MenuPiatti" EntityType="Self.MenuPiatti" />
+          <EntitySet Name="Piatti" EntityType="Self.Piatti" />
+          <EntitySet Name="Portate" EntityType="Self.Portate" />
+          <AssociationSet Name="FK__Menu__fasciaOrar__3D5E1FD2" Association="Self.FK__Menu__fasciaOrar__3D5E1FD2">
+            <End Role="FasciaOrario" EntitySet="FasciaOrario" />
+            <End Role="Menu" EntitySet="Menu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuPiatti__menu__412EB0B6" Association="Self.FK__MenuPiatti__menu__412EB0B6">
+            <End Role="Menu" EntitySet="Menu" />
+            <End Role="MenuPiatti" EntitySet="MenuPiatti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__MenuPiatt__piatt__4222D4EF" Association="Self.FK__MenuPiatt__piatt__4222D4EF">
+            <End Role="Piatti" EntitySet="Piatti" />
+            <End Role="MenuPiatti" EntitySet="MenuPiatti" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Piatti__portata__38996AB5" Association="Self.FK__Piatti__portata__38996AB5">
+            <End Role="Portate" EntitySet="Portate" />
+            <End Role="Piatti" EntitySet="Piatti" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GestioneMenuModelStoreContainer" CdmEntityContainer="GestioneMenuEntities">
+          <EntitySetMapping Name="FasciaOrario">
+            <EntityTypeMapping TypeName="GestioneMenuModel.FasciaOrario">
+              <MappingFragment StoreEntitySet="FasciaOrario">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descrizione" ColumnName="descrizione" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menu">
+            <EntityTypeMapping TypeName="GestioneMenuModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="fasciaOrario" ColumnName="fasciaOrario" />
+                <ScalarProperty Name="descrizione" ColumnName="descrizione" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuPiatti">
+            <EntityTypeMapping TypeName="GestioneMenuModel.MenuPiatti">
+              <MappingFragment StoreEntitySet="MenuPiatti">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="menu" ColumnName="menu" />
+                <ScalarProperty Name="piatto" ColumnName="piatto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Piatti">
+            <EntityTypeMapping TypeName="GestioneMenuModel.Piatti">
+              <MappingFragment StoreEntitySet="Piatti">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="portata" ColumnName="portata" />
+                <ScalarProperty Name="descrizione" ColumnName="descrizione" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Portate">
+            <EntityTypeMapping TypeName="GestioneMenuModel.Portate">
+              <MappingFragment StoreEntitySet="Portate">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descrizione" ColumnName="descrizione" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Nessuno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
