@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestFinale {
-    class Esercizio1 {
+namespace Esercizio1 {
+    class Program {
         static void Main() {
             int i = 0;
             for (; i<=15; i++) {
